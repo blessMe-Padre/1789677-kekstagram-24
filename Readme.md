@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Субботин Сергей](https://up.htmlacademy.ru/javascript/24/user/1789677).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий (sench) Железцов] (https://htmlacademy.ru/profile/sench).
 
 ---
 
