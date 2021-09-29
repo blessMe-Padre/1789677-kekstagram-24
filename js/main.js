@@ -1,5 +1,5 @@
 
-const getRandomIntFromRange = function (min, max) {
+const getRandomIntFromRange = (min, max) => {
   if (min < 0 || max <= min) {
     getRandomIntFromRange('недопустимое значение');
   }
@@ -9,10 +9,5 @@ const getRandomIntFromRange = function (min, max) {
 };
 getRandomIntFromRange();
 
-const getStringLenght = function (max, string) {
-  if (string.lenght < max) {
-    return true;
-  }
-  return false;
-};
-getStringLenght();
+const getStringLength = (max, string) => string.length < max;
+getStringLength();
