@@ -1,74 +1,85 @@
-import { getRandomIntFromRange } from './utils.js';
+import { getRandomInt } from './utils.js';
 
-//id, число — идентификатор описания
-const id = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+const checkCommentLength = (comment, MaxCommentLength) => comment.length < MaxCommentLength;
 
-const randomId = getRandomIntFromRange(0, id.length - 1);
+const generateComments = (ammount) => {
+  const commentIds = [];
 
-//получаем url, строка — адрес картинки
-const getUrl = `photos/${randomId}.jpg`;
+  const NAMES = [
+    'Расул',
+    'Муххидин',
+    'Нурали',
+    'Махаббат',
+    'Бекзат',
+    'Насиба',
+    'Улукбек',
+    'Ухтам',
+  ];
 
-//description, строка — описание фотографи
-const descriptions = [
-  'описание номер 1',
-  'описание номер 2',
-  'описание номер 3',
-  'описание номер 4',
-  'описание номер 5'];
-const getRandomDescription = getRandomIntFromRange(0, descriptions.length - 1);
+  const COMMMENTS = [
+    'Всё отлично!',
+    'В целом всё неплохо. Но не всё.',
+    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+  ];
 
-//likes, число — количество лайков
-const likes = getRandomIntFromRange(15, 200);
+  const readyComments = [];
+  let commentMessage;
 
+  for (let index = 1; index <= ammount; index++) {
+    const commentId = commentIds.length; // id текущего комментария
+    commentIds.push(commentId.length + 1); // подготовка id для следующего комментария
 
-//comments— список комментариев, оставленных другими пользователями к этой фотографии.
+    const commentAvatar = (`img/avatar-${getRandomInt(1, 6)}.svg`);
 
-//идентификатор комментария
-const getRandomCommentsId = getRandomIntFromRange(1, 999);
+    const firstSentence = getRandomInt(0, COMMMENTS.length - 1);
+    let secondSentence = getRandomInt(0, COMMMENTS.length - 1);
 
-//avatar — это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg
-const getRandomAvatarNumber = getRandomIntFromRange(1, 6);
-const avatar = `img/avatar-${getRandomAvatarNumber}.svg'`;
+    if (getRandomInt(1, 2) === 2) {
 
-//текста комментария — message
-const messages = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают.Как можно было поймать такой неудачный момент ? !',
-];
-const getRandomMessage = getRandomIntFromRange(0, messages.length - 1);
+      while (secondSentence === firstSentence) {
+        secondSentence = getRandomInt(0, COMMMENTS.length);
+      }
 
-const names = [
-  'Расул',
-  'Муххидин',
-  'Нурали',
-  'Махаббат',
-  'Бекзат',
-  'Насиба',
-  'Улукбек',
-  'Ухтам',
-];
-const getRandomNames = getRandomIntFromRange(0, names.length - 1);
+      commentMessage = (`${COMMMENTS[firstSentence]} ${COMMMENTS[secondSentence]}`);
+    } else {
+      commentMessage = COMMMENTS[firstSentence];
+    }
 
-const greateComments = () => ({
-  id: getRandomCommentsId,
-  avatar: avatar,
-  message: messages[getRandomMessage],
-  name: names[getRandomNames],
-});
+    readyComments.push({
+      id: commentId,
+      avatar: commentAvatar,
+      message: commentMessage,
+      name: NAMES[getRandomInt(0, NAMES.length - 1)],
+    });
+  }
 
-const greatePhotoDescription = () => ({
-  id: randomId,
-  url: getUrl,
-  description: descriptions[getRandomDescription],
-  likes: likes,
-  comments: greateComments(),
-});
+  return readyComments;
+};
 
 
-const objectCount = 25;
-const similarPhotoDescription = Array.from({ length: objectCount }, greatePhotoDescription);
-similarPhotoDescription;
+const greateDescription = () => {
+
+  const descriptionIds = [];
+  const finalDescription = [];
+
+  for (let index = 1; index <= 25; index++) {
+    descriptionIds.push(index);
+  }
+
+  for (let index = 1; index <= descriptionIds.length; index++) {
+    finalDescription.push({
+      id: index,
+      url: `photos/${index}.jpg`,
+      description: 'simple photo',
+      likes: getRandomInt(15, 200),
+      comments: generateComments(getRandomInt(1, 5)),
+    });
+  }
+
+  return finalDescription;
+};
+
+export { getRandomInt, checkCommentLength, generateComments, greateDescription };

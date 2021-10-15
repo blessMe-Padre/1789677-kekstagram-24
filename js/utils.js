@@ -1,10 +1,12 @@
-const getRandomIntFromRange = (min, max) => {
-  if (min < 0 || max <= min) {
-    getRandomIntFromRange('недопустимое значение');
-  }
+const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  if (min > max) {
+    const temp = min;
+    min = max;
+    max = temp;
+  }
+  return Math.abs(Math.floor(Math.random() * (max - min + 1)) + min);
 };
 
-export { getRandomIntFromRange };
+export { getRandomInt };
