@@ -32,3 +32,5 @@ scaleControllBiggerButton.addEventListener('click', () => {
   scaleControllValue.value = `${size}%`;
   sizeImg.style.transform = `scale(${size / 100})`;
 });
+
+//необходимо записывать значение в скрытое поле для дальнейшей отправки на сервер.
