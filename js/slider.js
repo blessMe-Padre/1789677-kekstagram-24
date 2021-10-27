@@ -1,3 +1,5 @@
+import { DIVISOR } from './constants.js';
+
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const specialElement = document.querySelector('#effect-chrome');
@@ -18,7 +20,7 @@ noUiSlider.create(sliderElement, {
 
 sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
   effectLevelValue.value = unencoded[handle];
-  imgUploadPreview.style.filter = `grayscale(${effectLevelValue.value / 100}`;
+  imgUploadPreview.style.filter = `grayscale(${effectLevelValue.value / DIVISOR}`;
 });
 
 specialElement.addEventListener('change', (evt) => {

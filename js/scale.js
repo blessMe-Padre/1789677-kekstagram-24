@@ -1,14 +1,16 @@
+import { DIVISOR } from './constants.js';
+
 const zoomValue = {
   MIN: 25,
   MAX: 100,
   STEP: 25,
 };
 
-const scaleControlls = document.querySelector('.img-upload__scale');
+const scaleControls = document.querySelector('.img-upload__scale');
 
-const scaleControllSmallerButton = scaleControlls.querySelector('.scale__control--smaller');
-const scaleControllBiggerButton = scaleControlls.querySelector('.scale__control--bigger');
-const scaleControllValue = scaleControlls.querySelector('.scale__control--value');
+const scaleControllSmallerButton = scaleControls.querySelector('.scale__control--smaller');
+const scaleControllBiggerButton = scaleControls.querySelector('.scale__control--bigger');
+const scaleControllValue = scaleControls.querySelector('.scale__control--value');
 
 const formImage = document.querySelector('.img-upload__form');
 const sizeImg = formImage.querySelector('img');
@@ -20,7 +22,7 @@ scaleControllSmallerButton.addEventListener('click', () => {
   }
   size -= zoomValue.STEP;
   scaleControllValue.value = `${size}%`;
-  sizeImg.style.transform = `scale(${size / 100})`;
+  sizeImg.style.transform = `scale(${size / DIVISOR})`;
 });
 
 scaleControllBiggerButton.addEventListener('click', () => {
