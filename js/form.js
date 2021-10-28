@@ -23,6 +23,8 @@ formUploadImage.addEventListener('change', () => {
 function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
+  //удалить слуш scaleControllSmallerButton
+  //scaleControllBiggerButton
 }
 
 //закрытие модального окна кнопкой
@@ -81,6 +83,11 @@ const onHashtagsTextInput = () => {
 
 hashtags.addEventListener('input', onHashtagsTextInput);
 
+//отключает закрытие окна при фокусе в инпуте
+hashtags.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
+
 //проверка поля ввода комментария
 const commentTextInput = () => {
   const valueLength = commentField.value.length;
@@ -93,6 +100,11 @@ const commentTextInput = () => {
 };
 
 commentField.addEventListener('input', commentTextInput);
+
+//отключает закрытие окна при фокусе в инпуте
+commentField.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
 
 export { formUploadImage };
 

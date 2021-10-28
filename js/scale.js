@@ -1,5 +1,4 @@
-import { DIVISOR } from './constants.js';
-
+const DIVISOR = 100;
 const zoomValue = {
   MIN: 25,
   MAX: 100,
