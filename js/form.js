@@ -7,6 +7,7 @@ const buttonModalClose = document.querySelector('.img-upload__cancel');
 
 const hashtags = imageLoad.querySelector('.text__hashtags');
 const regExp = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+const MAX_HASHTAG_QUANTITY = 5;
 
 const commentField = imageLoad.querySelector('.text__description');
 const commentMaxLength = 140;
@@ -22,6 +23,8 @@ formUploadImage.addEventListener('change', () => {
 function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
+  //удалить слуш scaleControllSmallerButton
+  //scaleControllBiggerButton
 }
 
 //закрытие модального окна кнопкой
@@ -41,19 +44,49 @@ window.addEventListener('keydown', (evt) => {
 
 
 //валидация хештегов
-//добавить возможность вводить более чем один хештег!!!!
-const hashtagsTextInput = () => {
-  if (!regExp.test(hashtags.value)) {
-    hashtags.setCustomValidity('неверный формат хэштега');
+
+const onHashtagsTextInput = () => {
+  hashtags.value = hashtags.value.replaceAll('  ', ' ');
+
+  const hashtagsArr = hashtags.value.split(' ');
+  const invalidHashtagsArr = [];
+
+  if (hashtagsArr[0] === '') {
+    hashtagsArr.shift();
   }
-  else {
+  if (hashtagsArr[hashtagsArr.length - 1] === '') {
+    hashtagsArr.pop();
+  }
+  hashtagsArr.forEach((hashtag) => {
+    if (!hashtag.match(regExp)) {
+      invalidHashtagsArr.push(hashtag);
+    }
+  });
+
+  for (let i = 0; i < hashtagsArr.length; i++) {
+    hashtagsArr[i] = hashtagsArr[i].toLowerCase();
+  }
+
+  const duplicateHashtagsArr = hashtagsArr.filter((hashtag, index, arr) => arr.indexOf(hashtag) !== index);
+
+  if (duplicateHashtagsArr && duplicateHashtagsArr.length !== 0) {
+    hashtags.setCustomValidity(`Пожалуйста, удалите повторяющиеся хэш-теги: ${duplicateHashtagsArr.join(', ')}`);
+  } else if (hashtagsArr.length > MAX_HASHTAG_QUANTITY) {
+    hashtags.setCustomValidity(`Нельзя указывать больше ${MAX_HASHTAG_QUANTITY} хэш-тегов. Просьба удалить лишние ${hashtagsArr.length - MAX_HASHTAG_QUANTITY}`);
+  } else if (invalidHashtagsArr.length !== 0) {
+    hashtags.setCustomValidity(`Некорректно введен хэш-тег: ${invalidHashtagsArr.join(', ')}`);
+  } else {
     hashtags.setCustomValidity('');
   }
   hashtags.reportValidity();
 };
 
-hashtags.addEventListener('input', hashtagsTextInput);
+hashtags.addEventListener('input', onHashtagsTextInput);
 
+//отключает закрытие окна при фокусе в инпуте
+hashtags.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
 
 //проверка поля ввода комментария
 const commentTextInput = () => {
@@ -67,6 +100,11 @@ const commentTextInput = () => {
 };
 
 commentField.addEventListener('input', commentTextInput);
+
+//отключает закрытие окна при фокусе в инпуте
+commentField.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
 
 export { formUploadImage };
 
