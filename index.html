@@ -38,13 +38,13 @@
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" required
-                accept="image/png, image/jpeg">
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename"
+                accept="image/png, image/jpeg, image/jpg" required>
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
             <!-- Форма редактирования изображения -->
-            <div class="img-upload__overlay  hidden">
+            <div class="img-upload__overlay hidden">
               <div class="img-upload__wrapper">
                 <div class="img-upload__preview-container">
 
@@ -52,7 +52,7 @@
                   <fieldset class="img-upload__scale  scale">
                     <button type="button" class="scale__control  scale__control--smaller">Уменьшить</button>
                     <input type="text" class="scale__control  scale__control--value" value="100%" title="Image Scale"
-                      name="scale" readonly minlength="0%" maxlength="100%">
+                      name="scale" readonly>
                     <button type="button" class="scale__control  scale__control--bigger">Увеличить</button>
                   </fieldset>
 
@@ -63,20 +63,18 @@
 
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->
                   <fieldset class="img-upload__effect-level  effect-level">
-                    <input class="effect-level__value" type="number" step="any" name="effect-level" value=""
-                      minlength="0%" maxlength="100%">
+                    <input class="effect-level__value" type="number" step="any" name="effect-level" value="">
                     <div class="effect-level__slider"></div>
                   </fieldset>
 
                   <!-- Кнопка для закрытия формы редактирования изображения -->
-                  <button type="reset" class="img-upload__cancel  cancel" id="upload-cancel"
-                    tabindex="0">Закрыть</button>
+                  <button type="reset" class="img-upload__cancel  cancel" id="upload-cancel">Закрыть</button>
                 </div>
 
                 <!-- Наложение эффекта на изображение -->
                 <fieldset class="img-upload__effects  effects">
                   <ul class="effects__list">
-                    <li class="effects__item" required>
+                    <li class="effects__item">
                       <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-none"
                         value="none" checked>
                       <label for="effect-none" class="effects__label">
@@ -129,7 +127,7 @@
 
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
-                  <input class="text__hashtags" name="hashtags" type="text" placeholder="#ХэшТег">
+                  <input type="text" class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
                   <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
                 </fieldset>
 
@@ -164,7 +162,8 @@
           </div>
 
           <!-- Комментарии к изображению -->
-          <div class="social__comment-count">5 из <span class="comments-count">125</span> комментариев</div>
+          <div class="social__comment-count"><span class="comments-upload-count">5</span> из <span
+              class="comments-count">125</span> комментариев</div>
           <ul class="social__comments">
             <li class="social__comment">
               <img class="social__picture" src="img/avatar-4.svg" alt="Аватар комментатора фотографии" width="35"
@@ -172,7 +171,7 @@
               <p class="social__text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
             </li>
             <li class="social__comment">
-              <img class="social__picture" src="img/avatar-3.svg" alt="Аватар комментатора фотографии" width="35" git
+              <img class="social__picture" src="img/avatar-3.svg" alt="Аватар комментатора фотографии" width="35"
                 height="35">
               <p class="social__text">Да это фоташоп!!!!!!!!</p>
             </li>

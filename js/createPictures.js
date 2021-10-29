@@ -1,29 +1,21 @@
-import { greateDescription } from './data.js';
-import { getBigPicture } from './createBigPictures.js';
+import { userPhotos } from './data.js';
 
-//Контейнер для изображений от других пользователей
-const photoPicturesList = document.querySelector('.pictures');
+const picturesWrap = document.querySelector('.pictures');
 
-//Шаблон изображения случайного пользователя
-const randomUserTemplate = document.querySelector('#picture')
+const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const randomUserPicture = greateDescription();
-const userListFragment = document.createDocumentFragment();
+const usersPhotoListFragment = document.createDocumentFragment();
 
-randomUserPicture.forEach(({ id, url, likes, comments }) => {
-  const photoElement = randomUserTemplate.cloneNode(true);
+userPhotos.forEach(({ url, likes, comments }) => {
+  const photoElement = pictureTemplate.cloneNode(true);
   photoElement.querySelector('.picture__img').src = url;
   photoElement.querySelector('.picture__likes').textContent = likes;
   photoElement.querySelector('.picture__comments').textContent = comments.length;
-  userListFragment.appendChild(photoElement);
-  photoElement.addEventListener('click', () => {
-    getBigPicture(id);
-  });
+  usersPhotoListFragment.appendChild(photoElement);
 });
 
+picturesWrap.appendChild(usersPhotoListFragment);
 
-photoPicturesList.appendChild(userListFragment);
-
-export { randomUserPicture };
+export { picturesWrap };
