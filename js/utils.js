@@ -1,15 +1,12 @@
-const getRandomInt = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  if (min > max) {
-    const temp = min;
-    min = max;
-    max = temp;
-  }
-  return Math.abs(Math.floor(Math.random() * (max - min + 1)) + min);
+const getRandomInt = (from, to) => {
+  const lower = Math.ceil(Math.min(Math.abs(from), Math.abs(to)));
+  const upper = Math.floor(Math.max(Math.abs(from), Math.abs(to)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 };
 
 const isEscape = (evt) => evt.key === 'Escape';
 
+const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
-export { getRandomInt, isEscape };
+export { getRandomInt, isEscape, getRandomArrayElement };
