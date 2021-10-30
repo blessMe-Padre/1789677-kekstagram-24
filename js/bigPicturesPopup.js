@@ -2,7 +2,7 @@ import { fullSizePictureRender, commentsWrapClear, bigPicture } from './createBi
 import { picturesWrap } from './createPictures.js';
 import { isEscape } from './utils.js';
 
-const popup = (userPhotos) => {
+const getBigPopup = (userPhotos) => {
   const bigPictureCloseElement = bigPicture.querySelector('.big-picture__cancel');
 
   const onBigPictureEscKeydown = (evt) => {
@@ -37,4 +37,4 @@ const popup = (userPhotos) => {
   });
 };
 
-export { popup };
+export { getBigPopup };

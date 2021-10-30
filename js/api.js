@@ -16,4 +16,27 @@ const getData = (onSuccess, onError) => {
     });
 };
 
-export { getData };
+const sendData = (onSuccess, onFail, onFinally, body) => {
+  fetch(
+    'https://24.javascript.pages.academy/kekstagram',
+    {
+      method: 'POST',
+      body,
+    },
+  )
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        onFail();
+      }
+    })
+    .catch(() => {
+      onSuccess();
+    })
+    .finally(() => {
+      onFinally();
+    });
+};
+
+export { getData, sendData };

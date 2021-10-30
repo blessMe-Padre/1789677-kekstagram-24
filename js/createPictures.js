@@ -1,6 +1,6 @@
 import { getData } from './api.js';
-import { popup } from './bigPicturesPopup.js';
-import { showAlert } from './utils.js';
+import { getBigPopup } from './bigPicturesPopup.js';
+import { showErrorMessage } from './utils.js';
 
 const picturesWrap = document.querySelector('.pictures');
 
@@ -21,14 +21,14 @@ const thumbnailsRender = (userPhotos) => {
 
   picturesWrap.appendChild(usersPhotoListFragment);
 
-  popup(userPhotos);
+  getBigPopup(userPhotos);
 };
 
 getData(
   (photos) => {
     thumbnailsRender(photos);
   },
-  () => showAlert('Что-то пошло не так. Попробуйте перезагрузить страницу'),
+  () => showErrorMessage('Что-то пошло не так. Попробуйте перезагрузить страницу'),
 );
 
 export { thumbnailsRender, picturesWrap };

@@ -1,4 +1,6 @@
 import { isEscape } from './utils.js';
+import { sendData } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './utils.js';
 
 const formUploadImage = document.querySelector('.img-upload__form');
 const imageLoad = document.querySelector('.img-upload__overlay');
@@ -23,8 +25,6 @@ formUploadImage.addEventListener('change', () => {
 function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
-  //удалить слуш scaleControllSmallerButton
-  //scaleControllBiggerButton
 }
 
 //закрытие модального окна кнопкой
@@ -41,6 +41,21 @@ window.addEventListener('keydown', (evt) => {
   }
   window.removeEventListener('keydown', closeFormPopup);
 });
+
+//нажатие на кнопку публикации
+const setImgUploadFormSubmit = (onSuccess) => {
+  formUploadImage.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => showSuccessMessage('Форма успешно отправлена'),
+      () => showErrorMessage('При отправке формы возникла ошибка'),
+      () => onSuccess(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+setImgUploadFormSubmit(closeFormPopup);
 
 
 //валидация хештегов
@@ -71,12 +86,16 @@ const onHashtagsTextInput = () => {
 
   if (duplicateHashtagsArr && duplicateHashtagsArr.length !== 0) {
     hashtags.setCustomValidity(`Пожалуйста, удалите повторяющиеся хэш-теги: ${duplicateHashtagsArr.join(', ')}`);
+    hashtags.style.borderColor = '#FF5F49';
   } else if (hashtagsArr.length > MAX_HASHTAG_QUANTITY) {
     hashtags.setCustomValidity(`Нельзя указывать больше ${MAX_HASHTAG_QUANTITY} хэш-тегов. Просьба удалить лишние ${hashtagsArr.length - MAX_HASHTAG_QUANTITY}`);
+    hashtags.style.borderColor = '#FF5F49';
   } else if (invalidHashtagsArr.length !== 0) {
     hashtags.setCustomValidity(`Некорректно введен хэш-тег: ${invalidHashtagsArr.join(', ')}`);
+    hashtags.style.borderColor = '#FF5F49';
   } else {
     hashtags.setCustomValidity('');
+    hashtags.style.borderColor = '';
   }
   hashtags.reportValidity();
 };
@@ -110,3 +129,5 @@ export { formUploadImage };
 
 
 //localhost
+//удалять слушатель с кнопок scale
+//reset формы после отправки
