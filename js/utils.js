@@ -9,16 +9,14 @@ const getRandomInt = (from, to) => {
 
 const isEscape = (evt) => evt.key === 'Escape';
 
-const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
-
 const showErrorMessage = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
+  alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
   alertContainer.style.left = '50%';
   alertContainer.style.top = '40%';
-  alertContainer.style.bottom = 0;
-  alertContainer.style.right = 0;
+  alertContainer.style.bottom = '0';
+  alertContainer.style.right = '0';
   alertContainer.style.transform = 'translate(-50%, -50%)';
   alertContainer.style.height = '30%';
   alertContainer.style.borderRadius = '10px';
@@ -28,7 +26,7 @@ const showErrorMessage = (message) => {
   alertContainer.style.padding = '50px 50px';
   alertContainer.style.fontSize = '30px';
   alertContainer.style.textAlign = 'center';
-  alertContainer.style.lineHeight = 1.2;
+  alertContainer.style.lineHeight = '1.2';
   alertContainer.style.backgroundColor = '#FF5F49';
 
   alertContainer.textContent = message;
@@ -42,12 +40,12 @@ const showErrorMessage = (message) => {
 
 const showSuccessMessage = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
+  alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
   alertContainer.style.left = '50%';
   alertContainer.style.top = '40%';
-  alertContainer.style.bottom = 0;
-  alertContainer.style.right = 0;
+  alertContainer.style.bottom = '0';
+  alertContainer.style.right = '0';
   alertContainer.style.transform = 'translate(-50%, -50%)';
   alertContainer.style.height = '30%';
   alertContainer.style.borderRadius = '10px';
@@ -57,7 +55,7 @@ const showSuccessMessage = (message) => {
   alertContainer.style.padding = '50px 50px';
   alertContainer.style.fontSize = '30px';
   alertContainer.style.textAlign = 'center';
-  alertContainer.style.lineHeight = 1.2;
+  alertContainer.style.lineHeight = '1.2';
   alertContainer.style.backgroundColor = '#00FF40';
 
   alertContainer.textContent = message;
@@ -69,4 +67,4 @@ const showSuccessMessage = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export { getRandomInt, isEscape, getRandomArrayElement, showErrorMessage, showSuccessMessage };
+export { getRandomInt, isEscape, showErrorMessage, showSuccessMessage };
