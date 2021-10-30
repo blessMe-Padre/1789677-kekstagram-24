@@ -1,4 +1,6 @@
-import { userPhotos } from './data.js';
+import { getData } from './api.js';
+import { getBigPopup } from './bigPicturesPopup.js';
+import { showErrorMessage } from './utils.js';
 
 const picturesWrap = document.querySelector('.pictures');
 
@@ -8,14 +10,26 @@ const pictureTemplate = document.querySelector('#picture')
 
 const usersPhotoListFragment = document.createDocumentFragment();
 
-userPhotos.forEach(({ url, likes, comments }) => {
-  const photoElement = pictureTemplate.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = url;
-  photoElement.querySelector('.picture__likes').textContent = likes;
-  photoElement.querySelector('.picture__comments').textContent = comments.length;
-  usersPhotoListFragment.appendChild(photoElement);
-});
+const thumbnailsRender = (userPhotos) => {
+  userPhotos.forEach(({ url, likes, comments }) => {
+    const photoElement = pictureTemplate.cloneNode(true);
+    photoElement.querySelector('.picture__img').src = url;
+    photoElement.querySelector('.picture__likes').textContent = likes;
+    photoElement.querySelector('.picture__comments').textContent = comments.length;
+    usersPhotoListFragment.appendChild(photoElement);
+  });
 
-picturesWrap.appendChild(usersPhotoListFragment);
+  picturesWrap.appendChild(usersPhotoListFragment);
 
-export { picturesWrap };
+  getBigPopup(userPhotos);
+};
+
+getData(
+  (photos) => {
+    thumbnailsRender(photos);
+  },
+  () => showErrorMessage('Что-то пошло не так. Попробуйте перезагрузить страницу'),
+);
+
+export { thumbnailsRender, picturesWrap };
+
