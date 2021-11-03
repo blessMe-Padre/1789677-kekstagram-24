@@ -6,3 +6,5 @@ import './form.js';
 import './scale.js';
 import './slider.js';
 import './api.js';
+import './picturePreview.js';
+import './filters.js';
