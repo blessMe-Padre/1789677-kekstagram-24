@@ -1,4 +1,4 @@
-import { commentsWrap } from './createBigPictures.js';
+import { commentsWrap } from './create-big-pictures.js';
 import { MAX_START_VISIBLE_COMMENTS_NUMBER, UPLOAD_COMMENTS_NUMBER } from './constants.js';
 
 const commentsLoaderBtn = document.querySelector('.comments-loader');
