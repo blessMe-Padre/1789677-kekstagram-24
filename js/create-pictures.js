@@ -1,5 +1,5 @@
 import { getData } from './api.js';
-import { getBigPopup } from './bigPicturesPopup.js';
+import { getBigPopup } from './big-pictures-popup.js';
 import { showErrorMessage } from './utils.js';
 import { debounce } from './utils/debounce.js';
 import { showSortBlock, sortDefaultClick, sortRandomClick, sortDiscussedClick, sortInput, comparePicturesIds, comparePicturesComments } from './filters.js';
@@ -24,6 +24,7 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
+// Отрисовка 10 рандомных фотографий
 const thumbnailsRandomRender = (userPhotos) => {
   userPhotos
     .slice()

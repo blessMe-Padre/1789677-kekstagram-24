@@ -1,4 +1,4 @@
-import { showComments } from './showComments.js';
+import { showComments } from './show-comments.js';
 
 const bigPicture = document.querySelector('.big-picture');
 

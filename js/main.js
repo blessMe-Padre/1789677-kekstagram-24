@@ -1,10 +1,10 @@
-import './createPictures.js';
-import './createBigPictures.js';
-import './showComments.js';
-import './bigPicturesPopup.js';
+import './create-pictures.js';
+import './create-big-pictures.js';
+import './show-comments.js';
+import './big-pictures-popup.js';
 import './form.js';
 import './scale.js';
 import './slider.js';
 import './api.js';
-import './picturePreview.js';
+import './picture-preview.js';
 import './filters.js';

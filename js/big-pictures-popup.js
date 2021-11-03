@@ -1,5 +1,5 @@
-import { fullSizePictureRender, commentsWrapClear, bigPicture } from './createBigPictures.js';
-import { picturesWrap } from './createPictures.js';
+import { fullSizePictureRender, commentsWrapClear, bigPicture } from './create-big-pictures.js';
+import { picturesWrap } from './create-pictures.js';
 import { isEscape } from './utils.js';
 
 const getBigPopup = (userPhotos) => {
