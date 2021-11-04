@@ -1,7 +1,9 @@
 import { isEscape } from './utils.js';
 import { showErrorMessage, showSuccessMessage } from './utils.js';
 import { sendData } from './api.js';
-import { scaleControllSmallerButton, scaleControllBiggerButton, onScaleSmallerClick, onScaleBiggerClick } from './scale.js';
+import { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, onScaleSmallerClick, onScaleBiggerClick, scaleValueHidden } from './scale.js';
+import { fileChooser } from './picture-preview.js';
+import { imgUploadPreview, sliderElementBlock, effectLevelValue } from './slider.js';
 
 const formUploadImage = document.querySelector('.img-upload__form');
 const imageLoad = document.querySelector('.img-upload__overlay');
@@ -27,15 +29,28 @@ formUploadImage.addEventListener('change', () => {
   imageLoad.classList.remove('hidden');
   modalView.classList.add('modal-open');
   scaleChange();
-  formUploadImage.value = ''; //сбрасывает значение поля выбора файла
+  formUploadImage.value = '';
 });
 
 //функция закрытия модального окна
 function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
+  //обработчики событий
   scaleControllSmallerButton.removeEventListener('click', onScaleSmallerClick);
   scaleControllBiggerButton.removeEventListener('click', onScaleBiggerClick);
+  //Очистка полей
+  fileChooser.value = '';
+  scaleValueHidden.value = '100';
+  scaleControllValue.value = '100%';
+  imgUploadPreview.style.transform = 'scale(1)';
+  //фильтры
+  sliderElementBlock.classList.add('hidden');
+  imgUploadPreview.style.filter = 'none';
+  effectLevelValue.value = 'none';
+  // вводимый текст
+  hashtags.value = '';
+  commentField.value = '';
 }
 
 //закрытие модального окна кнопкой

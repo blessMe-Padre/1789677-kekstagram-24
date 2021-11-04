@@ -13,3 +13,5 @@ fileChooser.addEventListener('change', () => {
     preview.src = URL.createObjectURL(file);
   }
 });
+
+export { fileChooser };

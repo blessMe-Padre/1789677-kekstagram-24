@@ -42,4 +42,4 @@ scaleControllBiggerButton.addEventListener('click', () => {
 
 });
 
-export { scaleControllSmallerButton, scaleControllBiggerButton, onScaleSmallerClick, onScaleBiggerClick };
+export { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, scaleValueHidden, onScaleSmallerClick, onScaleBiggerClick };

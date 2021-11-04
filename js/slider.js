@@ -1,4 +1,5 @@
 
+const sliderElementBlock = document.querySelector('.effect-level'); // Блок со слайдером
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
@@ -15,6 +16,7 @@ noUiSlider.create(sliderElement, {
 });
 
 const onEffectChange = () => {
+  sliderElementBlock.style.display = 'none';
   sliderElement.style.display = 'none';
   effectLevelValue.value = '';
   imgUploadPreview.style.filter = 'none';
@@ -23,6 +25,7 @@ const onEffectChange = () => {
   effectsList.addEventListener('change', (evt) => {
     switch (evt.target.value) {
       case 'chrome':
+        sliderElementBlock.style.display = 'block';
         sliderElement.style.display = 'block';
         effectLevelValue.value = 1;
         sliderElement.noUiSlider.updateOptions({
@@ -39,6 +42,7 @@ const onEffectChange = () => {
         });
         break;
       case 'sepia':
+        sliderElementBlock.style.display = 'block';
         sliderElement.style.display = 'block';
         effectLevelValue.value = 1;
         sliderElement.noUiSlider.updateOptions({
@@ -55,6 +59,7 @@ const onEffectChange = () => {
         });
         break;
       case 'marvin':
+        sliderElementBlock.style.display = 'block';
         sliderElement.style.display = 'block';
         effectLevelValue.value = 100;
         sliderElement.noUiSlider.updateOptions({
@@ -71,6 +76,7 @@ const onEffectChange = () => {
         });
         break;
       case 'phobos':
+        sliderElementBlock.style.display = 'block';
         sliderElement.style.display = 'block';
         effectLevelValue.value = 3;
         sliderElement.noUiSlider.updateOptions({
@@ -87,6 +93,7 @@ const onEffectChange = () => {
         });
         break;
       case 'heat':
+        sliderElementBlock.style.display = 'block';
         sliderElement.style.display = 'block';
         effectLevelValue.value = 3;
         sliderElement.noUiSlider.updateOptions({
@@ -104,6 +111,7 @@ const onEffectChange = () => {
         break;
       case 'none':
         imgUploadPreview.style.filter = 'none';
+        sliderElementBlock.style.display = 'none';
         sliderElement.style.display = 'none';
         effectLevelValue.value = '';
         break;
@@ -111,3 +119,4 @@ const onEffectChange = () => {
   });
 };
 onEffectChange();
+export { imgUploadPreview, sliderElementBlock, effectLevelValue };
