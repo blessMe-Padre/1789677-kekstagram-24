@@ -5,7 +5,6 @@ const getData = (onSuccess, onError) => {
       if (response.ok) {
         return response;
       }
-      throw new Error('Не удалось загрузить фотографии. Попробуйте перезагрузить страницу');
     })
     .then((response) => response.json())
     .then((photos) => {

@@ -1,6 +1,6 @@
 import { getData } from './api.js';
 import { getBigPopup } from './big-pictures-popup.js';
-import { showErrorMessage } from './utils.js';
+import { showCustomErrorMessage } from './message.js';
 import { debounce } from './utils/debounce.js';
 import { showSortBlock, sortDefaultClick, sortRandomClick, sortDiscussedClick, sortInput, comparePicturesIds, comparePicturesComments } from './filters.js';
 
@@ -90,7 +90,7 @@ getData(
     ));
 
   },
-  () => showErrorMessage('Что-то пошло не так. Попробуйте перезагрузить страницу'),
+  () => showCustomErrorMessage('Что-то пошло не так. Попробуйте перезагрузить страницу'),
 );
 
 export { thumbnailsRender, picturesWrap };

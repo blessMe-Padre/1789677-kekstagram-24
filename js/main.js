@@ -8,3 +8,4 @@ import './slider.js';
 import './api.js';
 import './picture-preview.js';
 import './filters.js';
+import './message.js';

@@ -1,6 +1,9 @@
 import { isEscape } from './utils.js';
+import { showErrorMessage, showSuccessMessage } from './message.js';
 import { sendData } from './api.js';
-import { showErrorMessage, showSuccessMessage } from './utils.js';
+import { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, onScaleSmallerClick, onScaleBiggerClick, scaleValueHidden } from './scale.js';
+import { fileChooser } from './picture-preview.js';
+import { imgUploadPreview, sliderElementBlock, effectLevelValue } from './slider.js';
 
 const formUploadImage = document.querySelector('.img-upload__form');
 const imageLoad = document.querySelector('.img-upload__overlay');
@@ -11,20 +14,43 @@ const hashtags = imageLoad.querySelector('.text__hashtags');
 const regExp = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const MAX_HASHTAG_QUANTITY = 5;
 
+const COMMENT_MAX_LENGTH = 140;
 const commentField = imageLoad.querySelector('.text__description');
-const commentMaxLength = 140;
+
+
+//слушатель изменения значения кнопкок scale
+const scaleChange = () => {
+  scaleControllSmallerButton.addEventListener('click', onScaleSmallerClick);
+  scaleControllBiggerButton.addEventListener('click', onScaleBiggerClick);
+};
 
 //слушатель изменения значения поля #upload-file)
 formUploadImage.addEventListener('change', () => {
   imageLoad.classList.remove('hidden');
   modalView.classList.add('modal-open');
-  formUploadImage.value = ''; //сбрасывает значение поля выбора файла
+  scaleChange();
+  formUploadImage.value = '';
 });
 
 //функция закрытия модального окна
 function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
+  //обработчики событий
+  scaleControllSmallerButton.removeEventListener('click', onScaleSmallerClick);
+  scaleControllBiggerButton.removeEventListener('click', onScaleBiggerClick);
+  //Очистка полей
+  fileChooser.value = '';
+  scaleValueHidden.value = '100';
+  scaleControllValue.value = '100%';
+  imgUploadPreview.style.transform = 'scale(1)';
+  //фильтры
+  sliderElementBlock.classList.add('hidden');
+  imgUploadPreview.style.filter = 'none';
+  effectLevelValue.value = 'none';
+  // вводимый текст
+  hashtags.value = '';
+  commentField.value = '';
 }
 
 //закрытие модального окна кнопкой
@@ -110,10 +136,12 @@ hashtags.addEventListener('keydown', (evt) => {
 //проверка поля ввода комментария
 const commentTextInput = () => {
   const valueLength = commentField.value.length;
-  if (valueLength > commentMaxLength) {
-    commentField.setCustomValidity(`Максимальная длина комментария 140 символов. Удалите лишние ${valueLength - commentMaxLength} симв.`);
+  if (valueLength > COMMENT_MAX_LENGTH) {
+    commentField.setCustomValidity(`Максимальная длина комментария 140 символов. Удалите лишние ${valueLength - COMMENT_MAX_LENGTH} симв.`);
+    commentField.style.borderColor = '#FF5F49';
   } else {
     commentField.setCustomValidity('');
+    commentField.style.borderColor = '';
   }
   commentField.reportValidity();
 };
@@ -126,8 +154,3 @@ commentField.addEventListener('keydown', (evt) => {
 });
 
 export { formUploadImage };
-
-
-//localhost
-//удалять слушатель с кнопок scale
-//reset формы после отправки

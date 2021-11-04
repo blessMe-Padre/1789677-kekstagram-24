@@ -55,6 +55,8 @@
                     <input type="text" class="scale__control  scale__control--value" value="100%" title="Image Scale"
                       name="scale" readonly>
                     <button type="button" class="scale__control  scale__control--bigger">Увеличить</button>
+
+                    <input type="number" class="scale__value--hidden visually-hidden" value="100">
                   </fieldset>
 
                   <!-- Предварительный просмотр изображения -->
@@ -129,7 +131,8 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <input type="text" class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
-                  <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
+                  <textarea class="text__description" name="description" placeholder="Ваш комментарий..."
+                    maxlength="170"></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
