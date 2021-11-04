@@ -1,5 +1,5 @@
 import { isEscape } from './utils.js';
-import { showErrorMessage, showSuccessMessage } from './utils.js';
+import { showErrorMessage, showSuccessMessage } from './message.js';
 import { sendData } from './api.js';
 import { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, onScaleSmallerClick, onScaleBiggerClick, scaleValueHidden } from './scale.js';
 import { fileChooser } from './picture-preview.js';
@@ -154,8 +154,3 @@ commentField.addEventListener('keydown', (evt) => {
 });
 
 export { formUploadImage };
-
-
-//localhost
-//удалять слушатель с кнопок scale
-//reset формы после отправки

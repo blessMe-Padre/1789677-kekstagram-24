@@ -1,5 +1,4 @@
 const sortBlock = document.querySelector('.img-filters'); // Блок сортировки
-
 const sortDefault = sortBlock.querySelector('#filter-default'); // Кнопка сортировки «по умолчанию»
 const sortRandom = sortBlock.querySelector('#filter-random'); // Кнопка сортировки «случайные»
 const sortDiscussed = sortBlock.querySelector('#filter-discussed'); // Кнопка сортировки «обсуждаемые»
