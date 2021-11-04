@@ -1,6 +1,7 @@
 import { isEscape } from './utils.js';
-import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './utils.js';
+import { sendData } from './api.js';
+import { scaleControllSmallerButton, scaleControllBiggerButton, onScaleSmallerClick, onScaleBiggerClick } from './scale.js';
 
 const formUploadImage = document.querySelector('.img-upload__form');
 const imageLoad = document.querySelector('.img-upload__overlay');
@@ -11,13 +12,21 @@ const hashtags = imageLoad.querySelector('.text__hashtags');
 const regExp = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const MAX_HASHTAG_QUANTITY = 5;
 
+const COMMENT_MAX_LENGTH = 140;
 const commentField = imageLoad.querySelector('.text__description');
-const commentMaxLength = 140;
+
+
+//слушатель изменения значения кнопкок scale
+const scaleChange = () => {
+  scaleControllSmallerButton.addEventListener('click', onScaleSmallerClick);
+  scaleControllBiggerButton.addEventListener('click', onScaleBiggerClick);
+};
 
 //слушатель изменения значения поля #upload-file)
 formUploadImage.addEventListener('change', () => {
   imageLoad.classList.remove('hidden');
   modalView.classList.add('modal-open');
+  scaleChange();
   formUploadImage.value = ''; //сбрасывает значение поля выбора файла
 });
 
@@ -25,6 +34,8 @@ formUploadImage.addEventListener('change', () => {
 function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
+  scaleControllSmallerButton.removeEventListener('click', onScaleSmallerClick);
+  scaleControllBiggerButton.removeEventListener('click', onScaleBiggerClick);
 }
 
 //закрытие модального окна кнопкой
@@ -110,10 +121,12 @@ hashtags.addEventListener('keydown', (evt) => {
 //проверка поля ввода комментария
 const commentTextInput = () => {
   const valueLength = commentField.value.length;
-  if (valueLength > commentMaxLength) {
-    commentField.setCustomValidity(`Максимальная длина комментария 140 символов. Удалите лишние ${valueLength - commentMaxLength} симв.`);
+  if (valueLength > COMMENT_MAX_LENGTH) {
+    commentField.setCustomValidity(`Максимальная длина комментария 140 символов. Удалите лишние ${valueLength - COMMENT_MAX_LENGTH} симв.`);
+    commentField.style.borderColor = '#FF5F49';
   } else {
     commentField.setCustomValidity('');
+    commentField.style.borderColor = '';
   }
   commentField.reportValidity();
 };

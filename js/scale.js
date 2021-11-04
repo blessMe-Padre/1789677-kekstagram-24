@@ -11,10 +11,13 @@ const scaleControllSmallerButton = scaleControls.querySelector('.scale__control-
 const scaleControllBiggerButton = scaleControls.querySelector('.scale__control--bigger');
 const scaleControllValue = scaleControls.querySelector('.scale__control--value');
 
+const scaleValueHidden = scaleControls.querySelector('.scale__value--hidden'); // Скрытое поле значения
+
 const formImage = document.querySelector('.img-upload__form');
 const sizeImg = formImage.querySelector('img');
 
-scaleControllSmallerButton.addEventListener('click', () => {
+
+const onScaleSmallerClick = () => {
   let size = parseInt(scaleControllValue.value, 10);
   if (size === zoomValue.MIN) {
     return;
@@ -22,16 +25,21 @@ scaleControllSmallerButton.addEventListener('click', () => {
   size -= zoomValue.STEP;
   scaleControllValue.value = `${size}%`;
   sizeImg.style.transform = `scale(${size / DIVISOR})`;
-});
+  scaleValueHidden.value = scaleControllValue.value;
+};
 
-scaleControllBiggerButton.addEventListener('click', () => {
+const onScaleBiggerClick = () => {
   let size = parseInt(scaleControllValue.value, 10);
   if (size === zoomValue.MAX) {
     return;
   }
   size += zoomValue.STEP;
   scaleControllValue.value = `${size}%`;
-  sizeImg.style.transform = `scale(${size / 100})`;
+  sizeImg.style.transform = `scale(${size / DIVISOR})`;
+  scaleValueHidden.value = scaleControllValue.value;
+};
+scaleControllBiggerButton.addEventListener('click', () => {
+
 });
 
-//необходимо записывать значение в скрытое поле для дальнейшей отправки на сервер.
+export { scaleControllSmallerButton, scaleControllBiggerButton, onScaleSmallerClick, onScaleBiggerClick };
