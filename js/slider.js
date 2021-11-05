@@ -118,5 +118,5 @@ const onEffectChange = () => {
     }
   });
 };
-onEffectChange();
-export { imgUploadPreview, sliderElementBlock, effectLevelValue };
+// onEffectChange();
+export { onEffectChange, imgUploadPreview, sliderElementBlock, effectLevelValue };
