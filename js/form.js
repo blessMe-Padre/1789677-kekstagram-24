@@ -6,7 +6,7 @@ import { sendData } from './api.js';
 import { fileChooser } from './picture-preview.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
 import { hashtagValidate, commentValidate, hashtags, commentField, imageLoad, onHashtagsTextInput, commentTextInput } from './input-validate.js';
-import { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, onScaleSmallerClick, onScaleBiggerClick, scaleValueHidden } from './scale.js';
+import { scaleControlSmallerButton, scaleControlBiggerButton, scaleControlValue, onScaleSmallerClick, onScaleBiggerClick, scaleValueHidden } from './scale.js';
 
 const formUploadImage = document.querySelector('.img-upload__form');
 const modalView = document.querySelector('body');
@@ -15,8 +15,8 @@ const buttonModalClose = document.querySelector('.img-upload__cancel');
 
 //слушатель изменения значения кнопкок scale
 const scaleChange = () => {
-  scaleControllSmallerButton.addEventListener('click', onScaleSmallerClick);
-  scaleControllBiggerButton.addEventListener('click', onScaleBiggerClick);
+  scaleControlSmallerButton.addEventListener('click', onScaleSmallerClick);
+  scaleControlBiggerButton.addEventListener('click', onScaleBiggerClick);
 };
 
 //слушатель изменения значения поля #upload-file)
@@ -44,14 +44,14 @@ function closeFormPopup() {
   modalView.classList.remove('modal-open');
   imageLoad.classList.add('hidden');
   //обработчики событий
-  scaleControllSmallerButton.removeEventListener('click', onScaleSmallerClick);
-  scaleControllBiggerButton.removeEventListener('click', onScaleBiggerClick);
+  scaleControlSmallerButton.removeEventListener('click', onScaleSmallerClick);
+  scaleControlBiggerButton.removeEventListener('click', onScaleBiggerClick);
   hashtags.removeEventListener('input', onHashtagsTextInput);
   commentField.addEventListener('input', commentTextInput);
   //Очистка полей
   fileChooser.value = '';
   scaleValueHidden.value = '100';
-  scaleControllValue.value = '100%';
+  scaleControlValue.value = '100%';
   imgUploadPreview.style.transform = 'scale(1)';
   //фильтры
   sliderElementBlock.style.display = 'none';

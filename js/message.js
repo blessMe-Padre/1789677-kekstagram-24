@@ -17,7 +17,7 @@ const showErrorMessage = () => {
   const errorContainer = errorContainerTemplate.cloneNode(true);
   const errorCloseButton = errorContainer.querySelector('.error__button');
 
-  errorContainer.style.zIndex = 100;
+  errorContainer.style.zIndex = '100';
 
   document.body.append(errorContainer);
 
@@ -56,7 +56,7 @@ const showSuccessMessage = () => {
   const successContainer = successContainerTemplate.cloneNode(true);
   const successCloseButton = successContainer.querySelector('.success__button');
 
-  successContainer.style.zIndex = 100;
+  successContainer.style.zIndex = '100';
 
   document.body.append(successContainer);
 

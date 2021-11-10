@@ -7,9 +7,9 @@ const zoomValue = {
 
 const scaleControls = document.querySelector('.img-upload__scale');
 
-const scaleControllSmallerButton = scaleControls.querySelector('.scale__control--smaller');
-const scaleControllBiggerButton = scaleControls.querySelector('.scale__control--bigger');
-const scaleControllValue = scaleControls.querySelector('.scale__control--value');
+const scaleControlSmallerButton = scaleControls.querySelector('.scale__control--smaller');
+const scaleControlBiggerButton = scaleControls.querySelector('.scale__control--bigger');
+const scaleControlValue = scaleControls.querySelector('.scale__control--value');
 
 const scaleValueHidden = scaleControls.querySelector('.scale__value--hidden'); // Скрытое поле значения
 
@@ -18,28 +18,28 @@ const sizeImg = formImage.querySelector('img');
 
 
 const onScaleSmallerClick = () => {
-  let size = parseInt(scaleControllValue.value, 10);
+  let size = parseInt(scaleControlValue.value, 10);
   if (size === zoomValue.MIN) {
     return;
   }
   size -= zoomValue.STEP;
-  scaleControllValue.value = `${size}%`;
+  scaleControlValue.value = `${size}%`;
   sizeImg.style.transform = `scale(${size / DIVISOR})`;
-  scaleValueHidden.value = scaleControllValue.value;
+  scaleValueHidden.value = scaleControlValue.value;
 };
 
 const onScaleBiggerClick = () => {
-  let size = parseInt(scaleControllValue.value, 10);
+  let size = parseInt(scaleControlValue.value, 10);
   if (size === zoomValue.MAX) {
     return;
   }
   size += zoomValue.STEP;
-  scaleControllValue.value = `${size}%`;
+  scaleControlValue.value = `${size}%`;
   sizeImg.style.transform = `scale(${size / DIVISOR})`;
-  scaleValueHidden.value = scaleControllValue.value;
+  scaleValueHidden.value = scaleControlValue.value;
 };
-scaleControllBiggerButton.addEventListener('click', () => {
+scaleControlBiggerButton.addEventListener('click', () => {
 
 });
 
-export { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, scaleValueHidden, onScaleSmallerClick, onScaleBiggerClick };
+export { scaleControlSmallerButton, scaleControlBiggerButton, scaleControlValue, scaleValueHidden, onScaleSmallerClick, onScaleBiggerClick };

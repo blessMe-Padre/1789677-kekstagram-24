@@ -30,8 +30,8 @@ const showComments = () => {
   }
 
   function onCommentsLoaderBtnClick() {
-    const uploadedСommentsLength = uploadedComments.length;
-    for (let i = uploadedСommentsLength; i < (uploadedСommentsLength + UPLOAD_COMMENTS_NUMBER); i++) {
+    const uploadedCommentsLength = uploadedComments.length;
+    for (let i = uploadedCommentsLength; i < (uploadedCommentsLength + UPLOAD_COMMENTS_NUMBER); i++) {
       if (comments[i]) {
         comments[i].classList.remove('hidden');
         uploadedComments.push(comments[i]);
