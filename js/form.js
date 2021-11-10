@@ -1,20 +1,17 @@
 import './../nouislider/nouislider.js';
-import './filters.js';
-import './scale.js';
-import './slider.js';
-import './input-validate.js';
 
+import { sliderElementBlock, sliderElement, effectLevelValue, imgUploadPreview } from './slider.js';
 import { isEscape } from './utils.js';
 import { sendData } from './api.js';
 import { fileChooser } from './picture-preview.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
 import { hashtagValidate, commentValidate, hashtags, commentField, imageLoad, onHashtagsTextInput, commentTextInput } from './input-validate.js';
 import { scaleControllSmallerButton, scaleControllBiggerButton, scaleControllValue, onScaleSmallerClick, onScaleBiggerClick, scaleValueHidden } from './scale.js';
-import { onEffectChange, imgUploadPreview, sliderElementBlock, effectLevelValue } from './slider.js';
 
 const formUploadImage = document.querySelector('.img-upload__form');
 const modalView = document.querySelector('body');
 const buttonModalClose = document.querySelector('.img-upload__cancel');
+
 
 //слушатель изменения значения кнопкок scale
 const scaleChange = () => {
@@ -34,8 +31,13 @@ function openFormPopup() {
   scaleChange();
   hashtagValidate();
   commentValidate();
-  onEffectChange(); //не работает?/////////////////////////////////////////
 }
+
+//закрытие модального окна кнопкой
+buttonModalClose.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  closeFormPopup();
+});
 
 //функция закрытия модального окна
 function closeFormPopup() {
@@ -51,20 +53,15 @@ function closeFormPopup() {
   scaleValueHidden.value = '100';
   scaleControllValue.value = '100%';
   imgUploadPreview.style.transform = 'scale(1)';
-  //фильтры (не работает)//////////////////////////////////////////////////
-  sliderElementBlock.classList.add('hidden');
-  imgUploadPreview.style.filter = '';
+  //фильтры
+  sliderElementBlock.style.display = 'none';
+  sliderElement.style.display = 'none';
   effectLevelValue.value = '';
+  imgUploadPreview.style.filter = 'none';
   // вводимый текст
   hashtags.value = '';
   commentField.value = '';
 }
-
-//закрытие модального окна кнопкой
-buttonModalClose.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closeFormPopup();
-});
 
 //закрытие модального окна по 'esc'
 window.addEventListener('keydown', (evt) => {
@@ -90,4 +87,4 @@ const setImgUploadFormSubmit = (onSuccess) => {
 
 setImgUploadFormSubmit(closeFormPopup);
 
-export { formUploadImage, imageLoad };
+export { formUploadImage, imageLoad, imgUploadPreview };
