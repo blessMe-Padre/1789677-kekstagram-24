@@ -1,9 +1,9 @@
-
 const sliderElementBlock = document.querySelector('.effect-level'); // Блок со слайдером
 const sliderElement = document.querySelector('.effect-level__slider');
+const effectsList = document.querySelector('.effects__list');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
-const effectsList = document.querySelector('.effects__list');
+
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -119,4 +119,4 @@ const onEffectChange = () => {
   });
 };
 onEffectChange();
-export { imgUploadPreview, sliderElementBlock, effectLevelValue };
+export { sliderElementBlock, sliderElement, effectLevelValue, imgUploadPreview };
